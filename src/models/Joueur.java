@@ -43,7 +43,7 @@ public class Joueur {
 	
 	public Element getUnites(int n){
 		if(n>unites.size()){
-			System.out.println("bug de merde, getters à flo d'enculé de sa race, Joueur.java l.91");
+		
 			return null;
 		}
 		return unites.get(n);

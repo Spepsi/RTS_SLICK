@@ -30,7 +30,10 @@ public class Centre_Ville extends Batiment {
 		this.setListeProduction(centreville.getListeProduction());
 		this.setNom(centreville.getNom());
 		this.setDescription(centreville.getDescription());
-		this.setCollisionBox(new Circle(x,y,centreville.getCollisionRadius()));
+		// Lacollision box du batiment est un rectangle
+		this.setCollisionBox(new Rectangle(x,y,centreville.getCollisionRadius(),centreville.getCollisionRadius()));
+		this.collisionBox.setCenterX(x);
+		this.collisionBox.setCenterY(y);
 		this.setImage(Images.get().getImage("Centre_Ville"+this.getJoueur().getNumeroJoueur()));
 		//initialisation
 		this.setEnConstruction(!b);

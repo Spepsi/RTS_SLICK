@@ -8,6 +8,7 @@ import org.newdawn.slick.tiled.TiledMap;
 
 import sharedRessources.Images;
 import models.*;
+import controllers2D.Ordres;
 import controllers2D.Selections;
 
 
@@ -28,6 +29,8 @@ public class Game extends BasicGame
 	Camera camera;
 	// Le controleur de selection :
 	Selections selection ;
+	// Le controleur des ordres :
+	Ordres ordres;
 	// Render everything
 	
 	// Peon TEST
@@ -66,6 +69,7 @@ public class Game extends BasicGame
 		// Camera :
 		camera.updateCamera();
 		selection.updateSelection();
+		ordres.updateOrdres();
 	}
 
 	// Init our Gameobjects
@@ -78,12 +82,15 @@ public class Game extends BasicGame
 		this.map = new TiledMap("data/maps/map.tmx");
 		// Initialisation de la caméra :
 		this.camera= new Camera(this.container);
-		// Initialisation du controlleur de sélection :
+		
 		
 		
 		// Initialisation de la partie :
 		this.partie = new Partie(2,800,600);
+		// Initialisation du controlleur de sélection :
 		this.selection = new Selections(this.container,this.camera,this.partie);
+		// Initialisation du controlleur d'ordres :
+		this.ordres= new Ordres(this.container,this.camera,this.partie);
 		Images images =Images.get();
 		// Initialisation des images :
 		images.initImages();
@@ -94,9 +101,11 @@ public class Game extends BasicGame
 		
 		try {
 			this.partie.creerPeon(100, 100, 0);
+			this.partie.creerFantassin(200, 100, 0);
 			this.partie.creerCentre_Ville( 500, 300, 1,true);
 			this.partie.creerPeon(480, 290, 1);
 			this.partie.creerCentre_Ville( 200, 300, 0,true);
+			this.partie.creerCaserne( 300, 300, 0,true);
 			this.partie.creerCentre_Ville(300, 500, 1,true);
 			//this.partie.creerRessource(Terrain_Ressources.OR, 460, 270, 1000);
 			//this.partie.creerRessource(Terrain_Ressources.OR, 470, 270, 1000);

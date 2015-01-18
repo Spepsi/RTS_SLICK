@@ -50,7 +50,49 @@ public class Partie {
 		selection = new Rectangle(0,0,0,0);
 	}
 
-
+// MAJORDRE FLO TODO Compléter lescas
+	public void majOrdresFlo(Point p, boolean selectionPrincipale,boolean ajout){
+		Vector<Element> select;
+		Ordre o;
+		//System.out.println(this.getElementSelectionne());
+		if(selectionPrincipale)	
+			select = this.getElementSelectionne();
+		else
+			select = this.getElementSelectionneBis();
+		if(select.size()==0)
+			return;
+		// Si la sélection est composé de batiment alors on met à jour les points de ralliement
+		if(select.get(0) instanceof Batiment){
+			for(Element b : select){
+				
+				b.setPointDeRalliement(p);
+			}
+			return;
+		} 
+		// 1) Avoir l'élèment au point p
+		Element e = getTerrain().getElement(p);
+		// 2) Mettre à jour l'ordre selon le type d'élèment
+		//==> Déplacement
+		if(e==null){
+			
+		}
+		//==> Récolter ( Oui faudra mettre un ordre récolter pour toutes les unités, 
+		// Du coup si c'est pas un péon c'est juste un déplacement jusqu'à la ressource, puis on set ordre Ne rien faire
+		// Lorsqu'on arrive à destination
+		if( e instanceof Ressource){
+			
+		}
+		//==> Construire ou réparer
+		// IDEM que pour récolter, on met un ordre construire à tout le monde
+		if(e instanceof Batiment){
+			
+		}
+		//==> Attaquer ou suivre une unité
+		if(e instanceof Unite){
+			
+		}
+		
+	}
 	// fonction appellées par les controlleurs
 	public void majOrdres(Point p, boolean selectionPrincipale, boolean ajout){
 		Vector<Element> select;
@@ -229,7 +271,9 @@ public class Partie {
 		return true;
 
 	}
+	// VOIR LES FONCTIONS DANS TERRAINS QUI SONT AUSSI UTILISABLES
 	// Légère approximation,on prend le cercle recouvrant comme collisionBox
+	// Fonction qui renvoit vrai si il y a de la place pour l'élèment e centré sur le point p
 	public boolean estOccupee(Point p,Element e){
 		return getTerrain().estOccupe(new Circle(p.getX(),p.getY(),e.getCollisionBox().getBoundingCircleRadius()));
 	}
@@ -323,7 +367,7 @@ public class Partie {
 		if(!getTerrain().estOccupe(element.getCollisionBox())){
 			
 			
-			this.joueurs[n].getUnites().add(element);
+			this.joueurs[n].getBatiments().add(element);
 			this.joueurs[n].getElements().add(element);
 			this.terrain.getTerrain().add(element);
 		}
@@ -345,7 +389,7 @@ public class Partie {
 		if(!getTerrain().estOccupe(element.getCollisionBox())){
 			
 			
-			this.joueurs[n].getUnites().add(element);
+			this.joueurs[n].getBatiments().add(element);
 			this.joueurs[n].getElements().add(element);
 			this.terrain.getTerrain().add(element);
 		}
@@ -354,9 +398,7 @@ public class Partie {
 	}
 	
 	// A AJOUTER : RESSOURCES INITIALISATEURS
-	
-	
-	
+
 	public void creerUnites(String e, float x, float y, int n) throws InstantiationException, IllegalAccessException, ClassNotFoundException{
 		// créée une unité
 		
@@ -456,7 +498,6 @@ public class Partie {
 		}
 	}
 
-
 	// fonctions d'accès et d'écriture
 	public Joueur getJoueur(int n){
 		if(n>=this.joueurs.length){
@@ -532,8 +573,6 @@ public class Partie {
 	public void selectionnerGroupesUnites(int numeroGroupe, int numeroJoueur){
 		this.getJoueur(numeroJoueur).selectionnerGroupesUnites(numeroGroupe);
 	}
-
-
 	public Vector<Element> getPeonInoccupes() {
 		return peonInoccupes;
 	}
@@ -542,7 +581,6 @@ public class Partie {
 	public void setPeonInoccupes(Vector<Element> peonInoccupes) {
 		this.peonInoccupes = peonInoccupes;
 	}
-
 
 	public boolean estCarreLibre(float f, float g, Batiment batiment) {
 		// TODO Auto-generated method stub

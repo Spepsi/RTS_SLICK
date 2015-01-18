@@ -31,7 +31,7 @@ public class Peon extends Unite{
 		this.setDescription(p.getDescription());
 		//assignation de la position et de l'ordre
 		this.setPV(this.getMaxPV());
-		this.setCollisionBox(new Circle(x,y,10));
+		this.setCollisionBox(new Circle(x,y,p.getCollisionRadius()));
 		this.setP(new Point(x,y));
 		this.setXY(x,y);
 		this.setOrdre(new Ordre());

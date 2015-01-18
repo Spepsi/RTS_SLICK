@@ -17,7 +17,7 @@ public abstract class Element {
 	private float Y;
 	
 	private float collisionRadius;
-	private Shape collisionBox;
+	protected Shape collisionBox;
 	private Image image;
 	
 	private int position_X;

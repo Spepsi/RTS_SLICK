@@ -11,8 +11,6 @@ public class Selections {
 	// Mouse released:
 	boolean mouseReleased=false;
 	Partie partie ;
-
-	
 	GameContainer gc;
 	// Rectangle vis à vis de l'écran
 	private Rectangle rectangle;
@@ -27,8 +25,8 @@ public class Selections {
 		this.setRectangle(new Rectangle(0,0,0,0));
 		this.partie= p;
 	}
-	
-	
+
+
 	public void updateSelection(){
 		Input i = gc.getInput();
 		if(i.isMousePressed(Input.MOUSE_LEFT_BUTTON)){
@@ -41,7 +39,7 @@ public class Selections {
 			getRectangle().setBounds( (int)Math.min(recX,i.getAbsoluteMouseX()), (int)Math.min(recY, i.getAbsoluteMouseY()),
 					(int)Math.abs(i.getAbsoluteMouseX()-recX), (int)Math.abs(i.getAbsoluteMouseY()-recY));
 			setRectangle(getRectangle());
-			
+
 		}
 		else if(mouseReleased){
 			if(rectangle.getHeight()<1 || rectangle.getWidth()<1){
@@ -49,19 +47,49 @@ public class Selections {
 				rectangle.setHeight(1);
 				setRectangle(rectangle);
 			}
-			selectionner();
+			selectionner(i);
 			setRectangle(new Rectangle(0,0,0,0));
 			mouseReleased=false;
 		}
-		
+
 	}
 	// idJoueur qui controle vaut 0 pour le moment 
-	public void selectionner(){
+	public void selectionner(Input i){
 		// D'abord on reset la sélection :
-		resetSelection();
-		selectionnerUnites();
-		if(this.partie.getElementSelectionne().size()==0){
-			selectionnerBatiments();
+		boolean shift = i.isKeyDown(Input.KEY_LSHIFT);
+		if(!shift){
+			resetSelection();
+
+
+			//On sélectionne d'abord les unités
+			selectionnerUnites();
+			// SI on a selectionne aucune unité alors on sélectionne les batiments contenus dans le rectangle ( ou alors touche
+			// shift appuyée )
+			if( this.partie.getElementSelectionne().size()==0 ){
+				selectionnerBatiments();
+			}
+
+		}
+		// Si on appuie sur shift on veut ajouter les unités de même type que la sélection actuelle (Unité ou batiment)
+		else{
+			// Si la sélection est nulle on fait comme avant
+			if(this.partie.getElementSelectionne().size()==0){
+				selectionnerUnites();
+				if( this.partie.getElementSelectionne().size()==0 ){
+					selectionnerBatiments();
+				}
+			}
+			// Sinon selon la nature du premier élèment de la selection on sélectionne les Unités ou les Batiments
+			else{
+				Element e = this.partie.getElementSelectionne().get(0);
+				if(e instanceof Unite){
+					selectionnerUnites();
+				}
+				else if (e instanceof Batiment){
+					selectionnerBatiments();
+				}
+			}
+
 		}
 	}
 	public void resetSelection(){
@@ -72,14 +100,14 @@ public class Selections {
 	public void selectionnerUnites(){
 		for(Element e : this.partie.getJoueur(0).getUnites()){
 			if(estDansSelection(e)){
-				ajouterASelection(e);
+				ajouterASelection((Unite) e);
 			}
 		}
 	}
 	public void selectionnerBatiments(){
-		for(Element e : this.partie.getJoueur(0).getUnites()){
+		for(Element e : this.partie.getJoueur(0).getBatiments()){
 			if(estDansSelection(e)){
-				ajouterASelection(e);
+				ajouterASelection((Batiment) e);
 			}
 		}
 	}
@@ -92,15 +120,15 @@ public class Selections {
 		this.partie.getElementSelectionne().remove(e);
 	}
 	public  boolean estDansSelection(Element e){		
-			return e.getCollisionBox().intersects(rectangleAbs);
-		
+		return e.getCollisionBox().intersects(rectangleAbs);
+
 	}
-	
+
 	// TEST
 	public  boolean estDansSelection(PeonTest e){		
 		return e.getCollisionBox().intersects(rectangleAbs);
-	
-}
+
+	}
 	public Rectangle getRectangle() {
 		return rectangle;
 	}

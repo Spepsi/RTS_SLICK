@@ -23,7 +23,9 @@ public class Caserne extends Batiment {
 		this.setListeProduction(caserne.getListeProduction());
 		this.setNom(caserne.getNom());
 		this.setDescription(caserne.getDescription());
-		this.setCollisionBox(new Circle(x,y,caserne.getCollisionRadius()));
+		this.setCollisionBox(new Rectangle(x,y,caserne.getCollisionRadius(),caserne.getCollisionRadius()));
+		this.collisionBox.setCenterX(x);
+		this.collisionBox.setCenterY(y);
 		this.setImage(Images.get().getImage("Caserne"+this.getJoueur().getNumeroJoueur()));
 		//initialisation
 		this.setEnConstruction(!b);

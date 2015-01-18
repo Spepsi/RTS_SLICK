@@ -38,7 +38,7 @@ public class Data {
 		peon.setVitesseTravail(1);
 		peon.setTempsCreation(150);
 		peon.setNom("Peon");
-		peon.setCollisionRadius(10);
+		peon.setCollisionRadius(9);
 		peon.setDescription("Coût: 50 Or \r\n Peon");
 
 		//définition du Fantassin

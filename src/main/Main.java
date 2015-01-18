@@ -15,8 +15,8 @@ public class Main {
 		
 		try {
 			AppGameContainer app = new AppGameContainer( new Game() );
-			app.setDisplayMode(800, 600, false);
-			//app.setFullscreen(true);
+			app.setDisplayMode(1280, 720, false);
+			app.setFullscreen(true);
 			app.setTargetFrameRate(100);
 			app.start();
 		} catch (SlickException e) {
