@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" nextobjectid="1">
+ <tileset firstgid="1" name="herbe" tilewidth="32" tileheight="32">
+  <image source="../../../../../Desktop/Tileset/herbe.png" width="512" height="384"/>
+ </tileset>
+ <tileset firstgid="193" name="ressources" tilewidth="32" tileheight="32">
+  <image source="../../../../../Desktop/Tileset/ressources.png" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="449" name="arbres" tilewidth="32" tileheight="32">
+  <image source="../../../../../Desktop/Tileset/arbres.png" width="512" height="512"/>
+ </tileset>
+ <layer name="Herbe" width="100" height="100">
+  <data encoding="base64" compression="gzip">
+   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
+  </data>
+ </layer>
+ <layer name="Or" width="100" height="100">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3ZQQqDMBBAUbvv/c9bSrddyNTUj74HHiDzSQJm26h5Pj4fDXq06NGiR4seAEy4P1r0ONav89TjWHq06NFy1jx1/E4P3vRo0aNFDwAAAAAAANjH21qLHi16tOjRogcAAAAAXJ//gC16tOjRokeLHsBZnD0d7oIWPVr0aNEDAAAAAAAAZry1tejRokeLHi16wH/Zc2tM56rHGnrMrFq/HjN6tNR63J25tdgf96BHix4terToAfu8ABTND/pAnAAA
+  </data>
+ </layer>
+ <layer name="Arbres1" width="100" height="100">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3ZQQ0AIQADQYKo8y8NBcuFL8wklbCvjgEAAAAAAAAAAAAAwJ9v7gcv0wc0fUDTBzR9QNMHAAAAAADAfXxA0PQBTR/Q9AFNHwAAAAAAAAAAAAAAAADAqQXmYJavQJwAAA==
+  </data>
+ </layer>
+ <layer name="Arbres2" width="100" height="100">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3ZQQ0AIQADQYKY8y8RBcv7gJmkEvbVMQAAAAAAAAAAAACAP/rmfvAyfUDTBzR9QNMHNH0AAAAAAADcxwcETR/Q9AFNH9D0AQAAAAAAAAAAAAAAAABwtgXTBG5qQJwAAA==
+  </data>
+ </layer>
+</map>
